@@ -1,0 +1,40 @@
+\tikzstyle{decision} = [diamond, aspect = 1.5, draw, fill=white, text width=6.5em, text badly centered, node distance=3cm, inner sep=0pt,thick]
+\tikzstyle{block} = [rectangle, draw, fill=white, text width=15em, text centered, minimum height=2.5em, thick]
+\tikzstyle{block_blue} = [rectangle, draw, fill=BleuLMPS, text width=15em, text centered, minimum height=2.5em, thick]
+\tikzstyle{block_blue60} = [rectangle, draw, fill=BleuLMPS!60, text width=15em, text centered, minimum height=2.5em, thick]
+\tikzstyle{block_blue40} = [rectangle, draw, fill=BleuLMPS!40, text width=15em, text centered, minimum height=2.5em, thick]
+\tikzstyle{block2} = [rectangle, draw, fill=white, text width=10em, text centered, minimum height=2.5em, thick]
+\tikzstyle{block3} = [rectangle, draw, fill=white, text width=5em, text centered, minimum height=2.5em, thick]
+\tikzstyle{block3_blue60} = [rectangle, draw, fill=BleuLMPS!60, text width=5em, text centered, minimum height=2.5em, thick]
+\tikzstyle{line} = [draw, -{Stealth[scale = 1]},thick]
+\tikzstyle{cloud} = [rectangle, fill=black!15, node distance=3cm]
+\tikzstyle{cloudLine} = [draw = black!25, thick ]
+
+\begin{tikzpicture}[node distance = 2cm]
+	% Place nodes
+	\matrix [column sep=7mm,row sep=12mm]
+	{
+		
+		& \node [block] (Nucl) {Nuclear simulation};\\
+		& \node [block] (th) {Thermal simulation};\\
+		& \node [block] (Elas) {Quasi-static elsatic mechanical simulation}; & \node [block2] (fr) {Fragility surface}; \\
+		& \node [block] (Post) {Wöhler post processing of the elastic stress };\\
+		& \node [block_blue] (Latin) {\textcolor{BleuLMPS!10}{Enhanced LATIN solver}};\\
+	};
+	
+	\path [line] (Nucl) -- node [midway,right] {$r_d$,$\vect{T_d}$,$\vect{j_{th}}$} (th);
+	\path [line] (th) -- node [midway,right] {$\eps^{th}$} (Elas);
+	\path [line] (Nucl.west) --++(-1,0) |- node [near start,left] {$N_c$} (Post.west);
+	\path [line] (Elas) -- node [midway,right] {$\sigm^{th}$} (Post);
+	\path [line] (Post) -- node [midway,right] {$D_0\left(\vect{x}\right)$} (Latin);
+	\path [line] (Latin.east) -| node [near end,right] {$D\left(\vect{x},t\right)$} (fr.south);
+	\path [line] (Nucl.east) -| node [near end,right] {$N_c$} (fr.north);
+%	\path [line] (Indexed.east) -- node [midway,above] {$\left\{ \vect{u}^{(i)}_d(t)\right\}$} (Latin.west);
+	
+	
+	  \node [block3, left = 2cm of Latin] (Database) {Data base};
+	  \path [line] (Database) -- (Latin) node [midway, above] {$\left\{\vect{u}^{(i)}_d(t)\right\}$};
+	
+%	\path[line] (Latin.west) -- ++ (-3,0) node [midway,above] {$\left\{ \vect{u}^{(i)}_d(t)\right\}$} node [block3] {Data base};
+	
+\end{tikzpicture}

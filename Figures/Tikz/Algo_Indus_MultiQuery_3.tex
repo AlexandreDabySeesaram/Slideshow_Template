@@ -1,0 +1,56 @@
+\tikzstyle{decision} = [diamond, aspect = 1.5, draw, fill=white, text width=6.5em, text badly centered, node distance=3cm, inner sep=0pt,thick]
+\tikzstyle{block} = [rectangle, draw, fill=white, text width=15em, text centered, minimum height=2.5em, thick]
+\tikzstyle{block_light} = [rectangle, draw, fill=BleuLMPS!10, text width=15em, text centered, minimum height=2.5em, thick]
+\tikzstyle{block_blue} = [rectangle, draw, fill=BleuLMPS, text width=15em, text centered, minimum height=2.5em, thick]
+\tikzstyle{block2} = [rectangle, draw, fill=white, text width=10em, text centered, minimum height=2.5em, thick]
+\tikzstyle{block3} = [rectangle, draw, fill=RougeCEA!80!black, text width=5em, text centered, minimum height=2.5em, thick]
+\tikzstyle{line} = [draw, -{Stealth[scale = 1]},thick]
+\tikzstyle{cloud} = [rectangle, fill=black!15, node distance=3cm]
+\tikzstyle{cloudLine} = [draw = black!25, thick ]
+
+\begin{tikzpicture}[remember picture,node distance = 2cm]
+	% Place nodes
+	\matrix [column sep=7mm,row sep=12mm]
+	{
+		
+		& \node [block_light] (Nucl) {Nuclear simulation};\\
+		& \node [block_light] (th) {Thermal simulation};\\
+		& \node [block_light] (Elas) {Quasi-static elastic mechanical simulation}; & \node [block2] (fr) {Fragility surface}; \\
+		& \node [block_light] (Post) {Wöhler post processing of the elastic stress };\\
+		& \node [block] (Latin) {Non-linear solver};\\
+	};
+	\node [block3, left = 2cm of Latin] (Database) {Data base};
+	\begin{scope}[]
+		\fill[BleuLMPS!10] ($(Nucl.north west)+(-4,0.3)$) rectangle ($(Post.south east)+(0.5,-0.3)$);
+		\fill[RougeCEA!80!black] ($(Database.north west)+(-0.3,0.4)$) rectangle ($(Latin.south east)+(0.5,-0.3)$); 
+		\node [rotate=90] at ($(Nucl.north west)+(-3,0.3)!0.8!(Post.south west)+(-3,-0.3)$) {\textbf{\textcolor{BleuLMPS}{\Large Ageing of the structure}}};
+	\end{scope}
+	\matrix [column sep=7mm,row sep=12mm]
+	{
+		
+		& \node [block_light] (Nucl) {Nuclear simulation};\\
+		& \node [block_light] (th) {Thermal simulation};\\
+		& \node [block_light] (Elas) {Quasi-static elastic mechanical simulation}; & \node [block2] (fr) {Fragility surface}; \\
+		& \node [block_light] (Post) {Wöhler post processing of the elastic stress };\\
+		& \node [block_blue] (Latin) {\textbf{\textcolor{BleuLMPS!10}{Non-linear solver}}};\\
+	};
+	
+	
+	
+	
+	\path [line] (Nucl) -- node [midway,right] {} (th);
+	\path [line] (th) -- node [midway,right] {} (Elas);
+	\path [line] (Nucl.west) --++(-1,0) |- node [near start,left] {$N_c$} (Post.west);
+	\path [line] (Elas) -- node [midway,right] {} (Post);
+	\path [line] (Post) -- node [midway,right] {$D_0\left(\vect{x}\right)$} (Latin);
+	\path [line] (Latin.east) -| node [near end,right] {$D\left(\vect{x},t\right)$} (fr.south);
+	\path [line] (Nucl.east) -| node [near end,right] {$N_c$} (fr.north);
+	%	\path [line] (Indexed.east) -- node [midway,above] {$\left\{ \vect{u}^{(i)}_d(t)\right\}$} (Latin.west);
+	
+	
+	\node [block3, left = 2cm of Latin] (Database) {\textbf{\textcolor{white}{Data base}}};
+	\path [line] (Database) -- (Latin) node [midway, above] {\textcolor{white}{$\left\{\vect{u}^{(i)}_d(t)\right\}$}};
+	\coordinate (C) at (current bounding box.south west);
+	%	\path[line] (Latin.west) -- ++ (-3,0) node [midway,above] {$\left\{ \vect{u}^{(i)}_d(t)\right\}$} node [block3] {Data base};
+	
+\end{tikzpicture}

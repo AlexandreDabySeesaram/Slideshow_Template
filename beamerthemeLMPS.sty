@@ -1,0 +1,96 @@
+% Copyright 2007 by Till Tantau
+%
+% This file may be distributed and/or modified
+%
+% 1. under the LaTeX Project Public License and/or
+% 2. under the GNU Public License.
+%
+% See the file doc/licenses/LICENSE for more details.
+
+\DeclareOptionBeamer{hideothersubsections}{\PassOptionsToPackage{hideothersubsections=#1}{beamerouterthemesidebar}}
+\DeclareOptionBeamer{hideallsubsections}{\PassOptionsToPackage{hideallsubsections=#1}{beamerouterthemesidebar}}
+
+\DeclareOptionBeamer{width}{\PassOptionsToPackage{width=#1}{beamerouterthemesidebar}}
+\DeclareOptionBeamer{left}{\PassOptionsToPackage{left}{beamerouterthemesidebar}}
+\DeclareOptionBeamer{right}{\PassOptionsToPackage{right}{beamerouterthemesidebar}}
+\ProcessOptionsBeamer
+
+\mode<presentation>
+
+\useoutertheme{sidebar}
+\useinnertheme{rectangles}
+
+\usecolortheme{whale}
+\usecolortheme{orchid}
+
+\setbeamercolor*{frametitle}{parent=palette primary}
+
+\setbeamerfont{block title}{size={}}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% The Berkeley-themed Beamer Template: LMPS Lab Edition provides a seamless bridge between the captivating aesthetics of the LMPS Lab PowerPoint template and the flexibility and power of LaTeX Beamer. With this template, you can effortlessly convey your ideas, research findings, or academic presentations with a consistent and visually appealing color palette that resonates with the LMPS Lab's aesthetics. 
+%
+%A. Daby-Seesaram 2022
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%% Add LMPS image to the left bar %%%%%%%%%%%
+\makeatletter
+\setbeamertemplate{background canvas}{\includegraphics[width=\beamer@sidebarwidth,height=\paperheight+1em]{Logos/LMPS/leftbar_transparent_3}}
+\setbeamertemplate{sidebar canvas left}{}
+    \newlength{\imagewidth}
+\setlength{\imagewidth}{\paperwidth}
+\addtolength{\imagewidth}{-\beamer@sidebarwidth}
+
+\newlength{\sidebarwidth}
+\setlength{\sidebarwidth}{\beamer@sidebarwidth}
+\makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%% Logos %%%%%%%%%%%%%%%%%%%%%%
+% Single logo
+%\logo{\includegraphics[width=0.095\linewidth]{Logos/LMPS/logo_LMPS_texte_blanc.pdf}} % LMPS
+
+% Use logo of both ENS and CEA
+\logo{%
+	\hspace{0.7cm}\vspace{0.15cm}
+	\makebox[1.85\paperwidth]{%
+		\hfill%
+		\hspace{3em} 
+		\includegraphics[width=0.095\linewidth,keepaspectratio]{Logos/LMPS/logo_LMPS_texte_blanc.pdf}%
+		\hfill%
+%		\includegraphics[width=0.095\linewidth,keepaspectratio, trim = 0 1cm -1.5cm 0]{Logos/LMPS/logo_cea_bleu_trait.eps}% cea bleu lmps
+		\includegraphics[width=0.095\linewidth,keepaspectratio, trim = 0 1cm -1.5cm 0]{Logos/LMPS/logo_cea_rouge_trait.eps}% cea rouge cea
+	}%
+}
+%\titlegraphic{\vspace*{-8.8cm}\hspace{-1.5cm}~\includegraphics[height=0.9cm]{Logos/LMPS/Tutelles_colours.eps}\vspace*{10cm} % Tutelles bleu lmps
+\titlegraphic{\vspace*{-8.9cm}\hspace{-1.5cm}~\includegraphics[height=0.9cm]{Logos/LMPS/Tutelles_colours_new.eps}\vspace*{10cm} % tutelles couleurs
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Colours
+\setbeamercolor*{structure}{fg=accentcolor} % Change color in section pane and of different elements
+\setbeamercolor*{title}{fg=accentcolor, bg=}
+\setbeamercolor{frametitle}{bg=accentcolor!10} % Change color of frame title pane
+\setbeamercolor{logo}{bg=accentcolor,fg=accentcolor}  %controls the color of the logo area
+\setbeamercolor{framesubtitle}{fg=accentcolor} % Set frame title text color
+\setbeamercolor{frametitle}{fg=accentcolor} %Set frame subtitle text color
+\setbeamertemplate{itemize item}{\color{accentcolor!80}\tiny{$\blacksquare$}} % set items format
+\setbeamertemplate{itemize subitem}{\color{accentcolor!60}\tiny{$\blacktriangleright$}} % set subitems format
+\setbeamertemplate{itemize subsubitem}{\color{accentcolor!50}\tiny{$\bullet$}} % set subitems format
+
+
+%%%% Commands foot 
+\setbeamertemplate{page number in head/foot}[totalframenumber]
+\setbeamertemplate{navigation symbols}{\footnotesize\usebeamertemplate{page number in head/foot}}
+
+
+
+
+
+\mode
+<all>

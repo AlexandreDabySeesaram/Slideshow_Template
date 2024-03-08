@@ -1,0 +1,207 @@
+\usepackage{amsmath,bm}
+\usepackage{amsmath}
+\usepackage{mathtools,stmaryrd}
+\usepackage{fontawesome5}
+\usepackage{color}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{hyperref}
+\hypersetup{hidelinks}
+\usepackage{multicol}
+\usepackage{siunitx}
+\usepackage{mathrsfs}
+\usepackage{float}
+\usepackage{dsfont}
+\setlength{\columnsep}{0.5cm}
+\usepackage{booktabs}
+\usepackage[most]{tcolorbox}
+\usepackage{graphicx}
+
+% Tikz (and externalization (in a subdir of build))
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows,arrows.meta,shapes.multipart}
+\usetikzlibrary{positioning}
+
+
+% Usefull commands
+
+\newcommand{\code}[1]{\texttt{#1}}
+
+% Operators
+\newcommand{\matrice}[1]{\boldsymbol{#1}}
+\newcommand{\ftensor}[1]{\mathbb{#1}}
+\newcommand{\tensor}[1]{\boldsymbol{#1}}\newcommand{\vect}[1]{\boldsymbol{#1}}
+\newcommand{\four}[1]{{#1}_\omega}
+
+% Mechanical quantities
+\newcommand{\epsp}[0]{\underline{\underline{\varepsilon}}^p} % version 1
+\newcommand{\sigm}[0]{\mathcal{\boldsymbol{\sigma}}}
+\newcommand{\sigmPGD}[0]{\underline{\underline{\overline{\sigma}}}} % version 1
+\newcommand{\epspPGD}[0]{\underline{\underline{\overline{\varepsilon}}}^p} % version 1
+\newcommand{\uPGD}[0]{\underline{\overline{u}}} % version 1
+\newcommand{\eps}[0]{\mathcal{\boldsymbol{\varepsilon}}}
+\newcommand{\depsp}[0]{\dot{\underline{\underline{\varepsilon}}}^p} % version 1
+\newcommand{\dcepsp}[0]{\hat{\dot{\underline{\underline{\varepsilon}}}}^p} % version 1
+\newcommand{\tbr}[1]{\llbracket\mkern-5mu\llbracket #1 \rrbracket\mkern-5mu\rrbracket}
+
+
+%%% Colours
+\definecolor{MyGrey}{RGB}{204,204,206}
+
+\definecolor{Greendaby1}{RGB}{0, 200, 140}
+\colorlet{Greendaby}{Greendaby1!70!black}
+\definecolor{GrisMetalLMPS}{RGB}{130,130,130} % LMPS
+\definecolor{GreenLMPS}{RGB}{0,200,140} % LMPS
+\definecolor{OrangeLMPS}{RGB}{255,160,40} % LMPS
+\definecolor{RougeCEA}{RGB}{178,15,0} % CEA
+\definecolor{RougeLMPS}{RGB}{229,0,25}
+\definecolor{BleuLMPS}{RGB}{25, 40, 85}
+\definecolor{BleuCLMPS}{RGB}{83,19,30} % LMPS 
+\definecolor{VertLMPS}{RGB}{0, 200, 140}
+\definecolor{LightBleuLMPS}{RGB}{100,140,255} % LMPS 
+
+% ACCENTCOLOR
+\definecolor{accentcolor}{RGB}{25, 40, 85} % Bleu LMPS
+
+
+\newcommand*{\citeperso}{\textcolor{accentcolor!60}}
+
+
+%%% Colour block 
+\newenvironment<>{blueblock}[1]{%
+	\setbeamercolor{block title}{fg=white,bg=BleuLMPS!90}
+	\setbeamercolor{block body}{fg=black,bg=white}%
+	\begin{block}#2{#1}}{\end{block}}
+
+\newenvironment<>{greenblock}[1]{%
+	\setbeamercolor{block title}{fg=white,bg=GreenLMPS}
+	\setbeamercolor{block body}{fg=black,bg=white}%
+	\begin{block}#2{#1}}{\end{block}}
+
+\newenvironment<>{redblock}[1]{%
+	\setbeamercolor{block title}{fg=white,bg=RougeLMPS}
+	\setbeamercolor{block body}{fg=black,bg=white}%
+	\begin{block}#2{#1}}{\end{block}}
+
+\newenvironment<>{blueblockshadow}[1]{%
+	\begin{tcolorbox}[enhanced,colback=white,colframe=BleuLMPS!90,boxrule=0pt,arc=0mm,drop shadow,left=0.5mm,
+		right=0.5mm,
+		top=0.5mm,
+		bottom=0.5mm,
+		middle=1mm,halign=flush left,fonttitle=\large,adjusted title=#1]
+	}{
+\end{tcolorbox}}
+
+\newenvironment<>{greenblockshadow}[1]{%
+	\begin{tcolorbox}[enhanced,colback=white,colframe=BleuLMPS!80,boxrule=0pt,arc=0mm,drop shadow,left=0.5mm,
+		right=0.5mm,
+		top=0.5mm,
+		bottom=0.5mm,
+		middle=1mm,halign=flush left,fonttitle=\large,adjusted title=#1]
+	}{
+\end{tcolorbox}}
+
+\newenvironment<>{redblockshadow}[1]{%
+	\begin{tcolorbox}[enhanced,colback=white,colframe=RougeLMPS,boxrule=0pt,arc=0mm,drop shadow,left=0.5mm,
+		top=0.5mm,
+		bottom=0.5mm,
+		middle=1mm,halign=flush left,fonttitle=\large,adjusted title=#1]
+	}{
+\end{tcolorbox}}
+
+\newenvironment<>{orangeblockshadow}[1]{%
+	\begin{tcolorbox}[enhanced,colback=white,colframe=OrangeLMPS,boxrule=0pt,arc=0mm,drop shadow,left=0.5mm,
+		top=0.5mm,
+		bottom=0.5mm,
+		middle=1mm,halign=flush left,fonttitle=\large,adjusted title=#1]
+	}{
+\end{tcolorbox}}
+
+\newenvironment<>{structureblockshadow}[1]{%
+	\begin{tcolorbox}[enhanced,colback=white,colframe=structure,boxrule=0pt,arc=0mm,drop shadow,left=0.5mm,
+		top=0.5mm,
+		bottom=0.5mm,
+		middle=1mm,halign=flush left,fonttitle=\large,adjusted title=#1]
+	}{
+\end{tcolorbox}}
+%%% Colour box
+
+
+\tcbset{on line, 
+	boxsep=1pt, left=0pt,right=0pt,top=0pt,bottom=0pt,
+	colframe=white,colback=BleuLMPS,  
+	highlight math style={enhanced}
+}
+
+%\newcommand{\highlight}[1]{\tcbox{\color{BleuLMPS!10}$\displaystyle #1$}}
+\newcommand{\highlight}[1]{%
+	  \colorbox{BleuLMPS!10}{$\displaystyle#1$}}
+
+%%% Nice box
+\tikzstyle{mybox} = [draw=BleuLMPS!90, fill=white, thick,
+rectangle, rounded corners, inner sep=10pt, inner ysep=20pt]
+\tikzstyle{fancytitle} =[fill=BleuLMPS!90, text=white]
+\newcommand{\myBox}[3]{%
+\begin{tikzpicture}
+	
+	\node [mybox] (box){%
+		\begin{minipage}{#3\linewidth}
+			#2
+	\end{minipage}		};
+	\node[fancytitle, right=10pt] at (box.north west) {#1};
+	
+\end{tikzpicture}%		
+}
+
+
+
+
+%%% Nice box
+
+\newcommand{\mygBox}[3]{%
+	\tikzstyle{mygbox} = [draw=GreenLMPS, fill=white, thick,
+	rectangle, rounded corners, inner sep=10pt, inner ysep=20pt]
+	\tikzstyle{fancytitle} =[fill=GreenLMPS, text=white]
+	\begin{tikzpicture}
+		
+		\node [mygbox] (box){%
+			\begin{minipage}{#3\linewidth}
+				#2
+		\end{minipage}		};
+		\node[fancytitle, right=10pt] at (box.north west) {#1};
+		
+	\end{tikzpicture}%		
+}
+
+%%% Nice box
+
+\newcommand{\myoBox}[3]{%
+	\tikzstyle{myobox} = [draw=OrangeLMPS, fill=white, thick,
+	rectangle, rounded corners, inner sep=10pt, inner ysep=20pt]
+	\tikzstyle{fancytitle} =[fill=OrangeLMPS, text=white]
+	\begin{tikzpicture}
+		
+		\node [myobox] (box){%
+			\begin{minipage}{#3\linewidth}
+				#2
+		\end{minipage}		};
+		\node[fancytitle, right=10pt] at (box.north west) {#1};
+		
+	\end{tikzpicture}%		
+}
+
+
+\newcommand{\myrBox}[3]{%
+	\tikzstyle{myrbox} = [draw=RougeLMPS, fill=white, thick,
+	rectangle, rounded corners, inner sep=10pt, inner ysep=20pt]
+	\tikzstyle{fancytitle} =[fill=RougeLMPS, text=white]
+	\begin{tikzpicture}
+		
+		\node [myrbox] (box){%
+			\begin{minipage}{#3\linewidth}
+				#2
+		\end{minipage}		};
+		\node[fancytitle, right=10pt] at (box.north west) {#1};
+		
+	\end{tikzpicture}%		
+}
