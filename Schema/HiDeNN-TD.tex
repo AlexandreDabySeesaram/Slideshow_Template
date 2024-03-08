@@ -1,0 +1,87 @@
+%\documentclass[tikz,border=2mm]{standalone}
+%\usetikzlibrary{shapes,arrows.meta,positioning}
+%\usepackage{xcolor}
+%\definecolor{BleuLMS}{RGB}{1, 66, 106}
+%\definecolor{GreenLMS}{RGB}{0,103,127} % LMPS
+%\definecolor{LGreenLMS}{RGB}{67,176,42} % LMPS
+%\definecolor{RougeLMS}{RGB}{206,0,55} % CEA
+
+
+\tikzstyle{input} = [circle, draw=BleuLMS, fill=BleuLMS!25, minimum size=8mm, thick]
+
+\tikzstyle{ShapeF} = [circle, draw=GreenLMS, fill=GreenLMS!25, minimum size=2mm, thick]
+
+\tikzstyle{Sol} = [circle, draw=LGreenLMS, fill=LGreenLMS!25, minimum size=2mm, thick]
+\tikzstyle{Out} = [circle, draw=RougeLMS, fill=RougeLMS!25, minimum size=2mm, thick]
+\tikzstyle{Mul} = [circle, draw=black, fill=black!25, minimum size=2mm, thick]
+\tikzstyle{line} = [draw,BleuLMS, -,thick]
+\usetikzlibrary {math}
+
+
+	\begin{tikzpicture}[>=Stealth, node distance=1.5cm]
+	
+	\def\NN{4} % number of nodes in spatial mesh
+	\def\NU{3} % number of nodes in parameter mesh
+	\def\NM{2} % number of modes
+	
+	
+	
+	% Input layer
+	\foreach \i in {1}
+	\node [input] (I\i) at (0,-2.5) {$x$};
+	
+	\foreach \i in {2}
+	\node [input] (I\i) at (0,-6.5) {$\mu$};
+	
+	% Hidden layer
+	\foreach \h [count=\hi] in {1,...,\NN}
+	\node [ShapeF] (Ho\hi) at (2, -1.1*\h) {$N^{\Omega}_\h$};
+	\foreach \h [count=\hi] in {1,...,\NU}
+	\node [ShapeF] (Hm\hi) at (2, -4.5-1.1*\h) {$N^{\mu}_\h$};
+	
+	% 2nd hidden layer
+	\foreach \o [count=\oi] in {1,...,\NM}
+	\node [Sol] (O\oi) at (4, -1-1.3*\oi) {$u_\o(x)$};
+	
+	\foreach \o [count=\oi] in {1,...,\NM}
+	\node [Sol] (Om\oi) at (4, -5-1.3*\oi) {$\mu_\o(\mu)$};
+	
+	% 3rd hidden layer
+	
+	\foreach \o [count=\oi] in {1,...,\NM}
+	\node [Mul] (Mul\oi) at (6, -3-\oi) {$\mathcal{M}$};
+	
+	%		 output layer
+	\node [Out] (Iout) at (8,-4.5) {$u\left(x,\mu\right)$};
+	
+	% Connect layers
+	\foreach \i in {1}
+	\foreach \h in {1,...,\NN}
+	\draw [line] (I\i) -- (Ho\h);
+	
+	\foreach \i in {2}
+	\foreach \h in {1,...,\NU}
+	\draw [line] (I\i) -- (Hm\h);
+	
+	\foreach \h in {1,...,\NN}
+	\foreach \o in {1,...,\NM}
+	\draw [line] (Ho\h) -- (O\o);
+	
+	\foreach \h in {1,...,\NU}
+	\foreach \o in {1,...,\NM}
+	\draw [line] (Hm\h) -- (Om\o);
+	
+	
+	\foreach \m in {1,...,\NM}
+	\draw [line] (O\m) -- (Mul\m);
+	\foreach \m in {1,...,\NM}
+	\draw [line] (Om\m) -- (Mul\m);
+	
+	\foreach \m in {1,...,\NM}
+	\draw [line] (Mul\m) -- (Iout);
+	
+	%		% Layer labels
+	%		\node[above=of I1] {Input Layer};
+	%		\node[above=of Ho1] {Hidden Layer};
+	%		\node[above=of O1] {Output Layer};
+\end{tikzpicture}

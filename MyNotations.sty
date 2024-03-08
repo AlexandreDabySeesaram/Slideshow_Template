@@ -19,8 +19,19 @@
 
 % Tikz (and externalization (in a subdir of build))
 \usepackage{tikz}
-\usetikzlibrary{shapes,arrows,arrows.meta,shapes.multipart}
+\usetikzlibrary{shapes,arrows,arrows.meta,shapes.multipart,positioning}
 \usetikzlibrary{positioning}
+
+
+% Tikz
+
+\tikzstyle{input} = [circle, draw=BleuLMS, fill=BleuLMS!25, minimum size=8mm, thick]
+\tikzstyle{ShapeF} = [circle, draw=GreenLMS, fill=GreenLMS!25, minimum size=2mm, thick]
+\tikzstyle{Sol} = [circle, draw=LGreenLMS, fill=LGreenLMS!25, minimum size=2mm, thick]
+\tikzstyle{Out} = [circle, draw=RougeLMS, fill=RougeLMS!25, minimum size=2mm, thick]
+\tikzstyle{Mul} = [circle, draw=black, fill=black!25, minimum size=2mm, thick]
+\tikzstyle{line} = [draw,BleuLMS, -,thick]
+\usetikzlibrary {math}
 
 
 % Usefull commands
@@ -60,8 +71,18 @@
 \definecolor{VertLMPS}{RGB}{0, 200, 140}
 \definecolor{LightBleuLMPS}{RGB}{100,140,255} % LMPS 
 
+
+\definecolor{BleuLMS}{RGB}{1, 66, 106}
+\definecolor{GreenLMS}{RGB}{0,103,127} 
+\definecolor{LGreenLMS}{RGB}{67,176,42} 
+\definecolor{RougeLMS}{RGB}{206,0,55} 
+%\newcommand{\citeperso}[1]{\boldsymbol{#1}}
+
+
+\newcommand{\leg}[1]{\textcolor{BleuLMS}{\underline{#1}}}
+
 % ACCENTCOLOR
-\definecolor{accentcolor}{RGB}{25, 40, 85} % Bleu LMPS
+\definecolor{accentcolor}{RGB}{1, 66, 106}
 
 
 \newcommand*{\citeperso}{\textcolor{accentcolor!60}}
@@ -84,7 +105,7 @@
 	\begin{block}#2{#1}}{\end{block}}
 
 \newenvironment<>{blueblockshadow}[1]{%
-	\begin{tcolorbox}[enhanced,colback=white,colframe=BleuLMPS!90,boxrule=0pt,arc=0mm,drop shadow,left=0.5mm,
+	\begin{tcolorbox}[enhanced,colback=white,colframe=BleuLMS!90,boxrule=0pt,arc=0mm,drop shadow,left=0.5mm,
 		right=0.5mm,
 		top=0.5mm,
 		bottom=0.5mm,
@@ -93,7 +114,7 @@
 \end{tcolorbox}}
 
 \newenvironment<>{greenblockshadow}[1]{%
-	\begin{tcolorbox}[enhanced,colback=white,colframe=BleuLMPS!80,boxrule=0pt,arc=0mm,drop shadow,left=0.5mm,
+	\begin{tcolorbox}[enhanced,colback=white,colframe=GreenLMS,boxrule=0pt,arc=0mm,drop shadow,left=0.5mm,
 		right=0.5mm,
 		top=0.5mm,
 		bottom=0.5mm,
