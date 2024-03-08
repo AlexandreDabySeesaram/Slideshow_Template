@@ -1,9 +1,9 @@
 # Slideshow Template
-Those are the template I use to present my scientific work, two flavours exist, one for the LMPS and one for the LMS
+This is the template I use to present my scientific work, two flavours exist, one for the LMPS and one for the LMS
 
 # Illustrations
 
-The two flavours at hand are shown bellow
+The two flavours are illustrated bellow
 
 | LMPS       |       LMS      |
 |------------|-------------|
